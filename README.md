@@ -1,4 +1,5 @@
 # javanio
 
 Examples of:
-* FileChannel
+* FileChannel (FileChannelRead/FileChannelWrite)
+* NioEchoServer -> non-blocking NIO echo server
