@@ -13,9 +13,14 @@ class FileChannelReader {
 
         val channel: FileChannel = FileChannel.open(path)
         val readBuffer: ByteBuffer = ByteBuffer.allocate(10) //allocate a buffer - 10 bytes long
-        var bytesCount: Int = channel.read(readBuffer) //read bytes from the channel into a buffer
-        while (bytesCount != -1) {
-            println("BytesCount: $bytesCount, ReadBuffer: $readBuffer")
+
+        /**
+         * read bytes from the channel into a buffer
+         */
+        var nrOfBytesRead: Int = channel.read(readBuffer)
+
+        while (nrOfBytesRead != -1) {
+            println("Nr of bytes read: $nrOfBytesRead, ReadBuffer: $readBuffer")
             // prepare for reading
             readBuffer.flip()
             println("ReadBuffer prepared for reading: $readBuffer")
@@ -23,7 +28,7 @@ class FileChannelReader {
                 println("Reading: ${readBuffer.get().toChar()}, ReadBuffer: $readBuffer")
             }
             readBuffer.clear()
-            bytesCount = channel.read(readBuffer)
+            nrOfBytesRead = channel.read(readBuffer)
         }
         channel.close()
     }
