@@ -12,12 +12,12 @@ class BlockingEchoServer {
 
         serverSocket.use { server ->
             while (true) {
-
                 /**
                  * Listens for a client to make a connection and when it does, creates a new socket
                  */
                 val clientSocket: Socket = server.accept()
-                println("Threads count: ${Thread.activeCount()}")
+                println("Threads count: ${Thread.activeCount()}, new clientSocket port: ${clientSocket.port}")
+                println("Memory used: ${calculateMemoryUsedInMegabytes()} MB")
 
                 /**
                  * Handling each connection in a new thread
