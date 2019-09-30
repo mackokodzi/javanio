@@ -89,6 +89,7 @@ class NioEchoServer {
      */
     private fun SelectionKey.readData() {
         val channel: SocketChannel = this.channel() as SocketChannel
+        channel.configureBlocking(false)
 
         val readBuffer : ByteBuffer = ByteBuffer.allocate(256)
         val state: Int = channel.read(readBuffer)
